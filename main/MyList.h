@@ -1,19 +1,21 @@
-#include "iostream"
-#include "list"
+#include <iostream>
+#include <list>
 using namespace std;
 
 // Создание локального типа данных
 template<typename T>
+// Создание пользовательского класса
 class MyList {
 private:
 	// Создание контейнера для хранения элементов MyList
 	list<T> l;
 public:
 	// Конструктор с параметром
-	explicit MyList(int size)
+	MyList(int size)
     {
-        l = std::list<T>(size);
+        l = list<T>(size);
     };
+
 	// Оператор взятия значения по индексу
 	T operator[](int index)
     {
@@ -21,11 +23,13 @@ public:
         std::advance(it, index);
         return *it;
     };
+
 	// Метод возвращает размер списка
 	int size()
     {
         return l.size();
     };
+
 	// Оператор добавления константы к элементу
 	MyList<T> operator+(T element)
     {
@@ -34,7 +38,8 @@ public:
         }
         return *this;
     };
-	// Вывод
+
+	// Оператор добавления элемента в конец списка
 	MyList<T> appEnd(T A)
     {
         l.push_back(A);
