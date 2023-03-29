@@ -10,13 +10,34 @@ private:
 	list<T> l;
 public:
 	// Конструктор с параметром
-	MyList(int size);
+	explicit MyList(int size)
+    {
+        l = std::list<T>(size);
+    };
 	// Оператор взятия значения по индексу
-	T operator[](int index);
+	T operator[](int index)
+    {
+        auto it = l.begin();
+        std::advance(it, index);
+        return *it;
+    };
 	// Метод возвращает размер списка
-	int size();
+	int size()
+    {
+        return l.size();
+    };
 	// Оператор добавления константы к элементу
-	MyList<T> operator+(int element);
+	MyList<T> operator+(T element)
+    {
+        for (T n : l) {
+            n += element;
+        }
+        return *this;
+    };
 	// Вывод
-	MyList<T> appEnd(int A);
+	MyList<T> appEnd(T A)
+    {
+        l.push_back(A);
+        return *this;
+    };
 };
